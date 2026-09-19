@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tools. Wearable sensing, workout timeline, and video analysis</title>
+  <meta name="description" content="Kineura's tools in detail: IMU-only and EMG plus IMU wearable sensing, the workout timeline, and video-based motion analysis. What each provides, who it's for, and current availability." />
+  <meta name="theme-color" content="#0a0f12" />
+  <link rel="canonical" href="https://kineura.com/tools.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Tools. Wearable sensing, workout timeline, and video analysis" />
+  <meta property="og:description" content="What each Kineura tool provides, who it's for, and current availability." />
+  <meta property="og:image" content="og-image.svg" />
+  <meta property="og:url" content="https://kineura.com/tools.html" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Kineura home">
+        <img class="brand-logo" src="assets/img/kineura-wordmark-cropped.png" alt="Kineura" width="487" height="120" />
+      </a>
+      <nav class="primary-nav" aria-label="Primary">
+        <button class="nav-toggle" aria-controls="navList" aria-expanded="false" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-list" id="navList">
+          <li><a href="platform.html">Platform</a></li>
+          <li><a href="tools.html" aria-current="page">Tools</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html#early-access" class="nav-cta">Get Early Access</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <h1>Every tool, in detail.</h1>
+        <p class="lede">What each tool measures, who it's for, and what stage it's at today. Real hardware ships now; the rest is honestly labeled as what it is.</p>
+      </div>
+    </section>
+
+    <section class="section" id="wearable-sensing" style="padding-top: 56px;">
+      <div class="container">
+        <div class="section-head">
+          <h2>Wearable sensing</h2>
+          <p class="lede">Two coequal tiers on the same sleeve platform. Choose IMU-only for motion alone, or EMG + IMU when muscle activation matters too.</p>
+        </div>
+        <div class="tier-grid">
+          <article class="tier-card" id="imu-only">
+            <div class="tier-card-head">
+              <div>
+                <h3>IMU-Only</h3>
+                <p class="tier-card-sub">Motion and movement tracking</p>
+              </div>
+              <span class="status-label status-label--dev">In development</span>
+            </div>
+            <div class="tier-cluster">
+              <h4>Measures</h4>
+              <ul>
+                <li>Cadence, stride length, and vertical oscillation</li>
+                <li>Ground contact time and left/right timing</li>
+                <li>Full 9-axis motion trends across a session</li>
+              </ul>
+            </div>
+            <div class="tier-cluster">
+              <h4>Typical use</h4>
+              <ul>
+                <li>Runners who want motion and pacing insight without electrode setup</li>
+                <li>Programs standardizing on one wearable across a full roster, where per-athlete EMG fitting isn't practical</li>
+              </ul>
+            </div>
+            <div class="tier-cluster">
+              <h4>Setup</h4>
+              <ul>
+                <li>Same compression sleeve as the EMG + IMU tier, worn on the lower leg</li>
+                <li>No electrode placement or skin prep required</li>
+              </ul>
+            </div>
+            <div class="tier-cluster">
+              <h4>Availability</h4>
+              <ul>
+                <li>In development. Hardware photography and unit pricing not yet finalized.</li>
+              </ul>
+            </div>
+            <a class="btn btn-secondary" href="contact.html">Ask about IMU-only timing</a>
+          </article>
+
+          <article class="tier-card" id="emg-imu">
+            <div class="tier-card-head">
+              <div>
+                <h3>EMG + IMU</h3>
+                <p class="tier-card-sub">Motion tracking plus muscle-activity sensing</p>
+              </div>
+              <span class="status-label status-label--available">Available now</span>
+            </div>
+            <div class="tier-cluster">
+              <h4>Measures</h4>
+              <ul>
+                <li>Everything IMU-only measures, plus surface EMG</li>
+                <li>Muscle activation, fatigue index, and stride symmetry</li>
+                <li>Left/right activation balance per session</li>
+              </ul>
+            </div>
+            <div class="tier-cluster">
+              <h4>Typical use</h4>
+              <ul>
+                <li>Athletes and PTs tracking neuromuscular load and return-to-run progress</li>
+                <li>Anyone who wants to know which muscles are doing the work, not just how far or fast</li>
+              </ul>
+            </div>
+            <div class="tier-cluster">
+              <h4>Setup</h4>
+              <ul>
+                <li>Dry electrodes built into the sleeve. No gel or skin prep.</li>
+                <li>Wireless sync after each session</li>
+              </ul>
+            </div>
+            <div class="tier-cluster">
+              <h4>Availability</h4>
+              <ul>
+                <li>Available to a limited number of early-access members now.</li>
+              </ul>
+            </div>
+            <a class="btn btn-secondary" href="index.html#early-access">Join early access</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="workout-timeline" style="border-top: 1px solid var(--line);">
+      <div class="container">
+        <div class="tool-row" style="padding: 0;">
+          <div class="tool-copy">
+            <div class="tool-copy-head">
+              <h2 style="margin:0;">Workout timeline</h2>
+              <span class="status-label status-label--dev">In development</span>
+            </div>
+            <p class="lede">A synchronized record that brings wearable data, planned workouts, manual notes, and connected training context like Strava into one coherent timeline, instead of scattered exports across three apps.</p>
+            <ul class="tool-meta">
+              <li><strong>Intended user:</strong> athletes and coaches who currently piece together training history by hand</li>
+              <li><strong>Job to be done:</strong> one place to see what was planned, what happened, and what the body did during it</li>
+              <li><strong>Availability:</strong> architecture defined, not yet shipping to early-access members</li>
+            </ul>
+            <a class="btn btn-secondary" href="contact.html">Tell us what you'd need from it</a>
+          </div>
+          <figure class="tool-figure" style="background: var(--bg-elev); padding: 24px;">
+            <svg viewBox="0 0 400 220" role="img" aria-labelledby="timelineSvgTitle" style="width:100%; height:auto; display:block;">
+              <title id="timelineSvgTitle">Concept diagram: four data sources converging onto one timeline</title>
+              <line x1="40" y1="180" x2="360" y2="180" stroke="var(--line-strong)" stroke-width="2"/>
+              <g fill="none" stroke="#2dd4bf" stroke-width="1.5" opacity="0.7">
+                <line x1="80" y1="40" x2="80" y2="180"/>
+                <line x1="170" y1="70" x2="170" y2="180"/>
+                <line x1="260" y1="55" x2="260" y2="180"/>
+                <line x1="330" y1="90" x2="330" y2="180"/>
+              </g>
+              <circle cx="80" cy="40" r="6" fill="#2dd4bf"/>
+              <circle cx="170" cy="70" r="6" fill="#2dd4bf"/>
+              <circle cx="260" cy="55" r="6" fill="#2dd4bf"/>
+              <circle cx="330" cy="90" r="6" fill="#2dd4bf"/>
+              <circle cx="80" cy="180" r="4" fill="#e6edf3"/>
+              <circle cx="170" cy="180" r="4" fill="#e6edf3"/>
+              <circle cx="260" cy="180" r="4" fill="#e6edf3"/>
+              <circle cx="330" cy="180" r="4" fill="#e6edf3"/>
+              <text x="80" y="30" fill="#9aa7b2" font-size="11" text-anchor="middle" font-family="JetBrains Mono, monospace">Wearable</text>
+              <text x="170" y="60" fill="#9aa7b2" font-size="11" text-anchor="middle" font-family="JetBrains Mono, monospace">Plan</text>
+              <text x="260" y="45" fill="#9aa7b2" font-size="11" text-anchor="middle" font-family="JetBrains Mono, monospace">Notes</text>
+              <text x="330" y="80" fill="#9aa7b2" font-size="11" text-anchor="middle" font-family="JetBrains Mono, monospace">Strava</text>
+              <text x="200" y="205" fill="#6b7884" font-size="10" text-anchor="middle" font-family="JetBrains Mono, monospace">TIMELINE</text>
+            </svg>
+            <p class="tool-figure-caption">Concept diagram, not a real screenshot. Shows the intended data model, not a finished product.</p>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="video-motion-analysis" style="border-top: 1px solid var(--line);">
+      <div class="container">
+        <div class="tool-row tool-row--reverse" style="padding: 0;">
+          <div class="tool-copy">
+            <div class="tool-copy-head">
+              <h2 style="margin:0;">Video motion analysis</h2>
+              <span class="status-label status-label--dev">In development</span>
+            </div>
+            <p class="lede">Video-based movement tracking for jump analysis, sprint mechanics, and other track-and-field movement metrics, using footage instead of (or alongside) wearable sensors.</p>
+            <ul class="tool-meta">
+              <li><strong>Intended user:</strong> coaches and programs evaluating jump height, sprint form, or movement quality</li>
+              <li><strong>Job to be done:</strong> turn a phone video into measured movement metrics, not just a clip to eyeball</li>
+              <li><strong>Availability:</strong> early prototyping, not yet available for pilots</li>
+            </ul>
+            <a class="btn btn-secondary" href="for-teams-coaches.html">See the coach workflow</a>
+          </div>
+          <figure class="tool-figure" style="background: var(--bg-elev); padding: 24px;">
+            <svg viewBox="0 0 260 220" role="img" aria-labelledby="motionSvgTitle" style="width:100%; height:auto; display:block; margin: 0 auto;">
+              <title id="motionSvgTitle">Concept diagram: joint-tracking keypoints on a schematic runner silhouette</title>
+              <g stroke="#2dd4bf" stroke-width="2" fill="none" opacity="0.85">
+                <line x1="130" y1="40" x2="130" y2="95"/>
+                <line x1="130" y1="95" x2="105" y2="130"/>
+                <line x1="105" y1="130" x2="115" y2="175"/>
+                <line x1="130" y1="95" x2="150" y2="140"/>
+                <line x1="150" y1="140" x2="140" y2="180"/>
+                <line x1="130" y1="60" x2="100" y2="80"/>
+                <line x1="130" y1="60" x2="158" y2="70"/>
+              </g>
+              <circle cx="130" cy="28" r="12" fill="none" stroke="#2dd4bf" stroke-width="2"/>
+              <g fill="#e6edf3">
+                <circle cx="130" cy="60" r="3.5"/>
+                <circle cx="130" cy="95" r="3.5"/>
+                <circle cx="105" cy="130" r="3.5"/>
+                <circle cx="115" cy="175" r="3.5"/>
+                <circle cx="150" cy="140" r="3.5"/>
+                <circle cx="140" cy="180" r="3.5"/>
+                <circle cx="100" cy="80" r="3.5"/>
+                <circle cx="158" cy="70" r="3.5"/>
+              </g>
+              <line x1="40" y1="190" x2="220" y2="190" stroke="var(--line-strong)" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <text x="130" y="208" fill="#6b7884" font-size="10" text-anchor="middle" font-family="JetBrains Mono, monospace">GROUND REFERENCE</text>
+            </svg>
+            <p class="tool-figure-caption">Concept diagram, not a real screenshot. Illustrates joint-keypoint tracking, not a finished product.</p>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="index.html" aria-label="Kineura home">
+          <img class="brand-logo" src="assets/img/kineura-wordmark-cropped.png" alt="Kineura" width="487" height="120" />
+        </a>
+        <p class="footer-tag">Insights at every stride.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <div>
+          <p class="footer-nav-heading">Platform</p>
+          <ul>
+            <li><a href="platform.html">How it works</a></li>
+            <li><a href="tools.html">Tools</a></li>
+            <li><a href="index.html#hardware">Hardware tiers</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-nav-heading">Collaborate</p>
+          <ul>
+            <li><a href="for-teams-coaches.html">For coaches &amp; teams</a></li>
+            <li><a href="for-research-clinical.html">For research &amp; clinical</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-nav-heading">Company</p>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#science">Science</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; <span id="year"></span> Kineura. All rights reserved.</p>
+      <p class="footer-disclaimer">Kineura supports training insight, not medical diagnosis or treatment.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
