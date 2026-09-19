@@ -31,6 +31,12 @@
   --accent-2: #14b8a6;
   --accent-soft: rgba(45, 212, 191, 0.14);
   --accent-glow: rgba(45, 212, 191, 0.35);
+  /* Text-weight teal: --accent itself is tuned to glow on a near-black page
+     and fails WCAG AA as small text once the page background goes light
+     (~1.9:1 on white). Every place --accent is used as a `color` (not a
+     background/border) uses this instead, so light mode gets a darker,
+     AA-compliant teal instead of a global brand-color change. */
+  --accent-text: var(--accent);
   --danger: #f87171;
   --radius: 14px;
   --radius-lg: 22px;
@@ -38,6 +44,7 @@
   --maxw: 1180px;
   --shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.8);
   --easing: cubic-bezier(0.22, 1, 0.36, 1);
+  color-scheme: dark light;
 }
 
 * { box-sizing: border-box; }
@@ -58,7 +65,7 @@ body {
 
 img, svg { max-width: 100%; display: block; }
 
-a { color: var(--accent); text-decoration: none; transition: color 0.2s ease; }
+a { color: var(--accent-text); text-decoration: none; transition: color 0.2s ease; }
 a:hover { color: #5eead4; }
 
 .container {
@@ -204,7 +211,7 @@ a:hover { color: #5eead4; }
 }
 .btn-secondary:hover {
   border-color: var(--accent);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 /* Hero */
@@ -415,7 +422,7 @@ a:hover { color: #5eead4; }
   font-size: 9.5px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-text);
   margin: 0 0 3px;
 }
 .sleeve-callout-card h3.sleeve-callout-title {
@@ -476,7 +483,7 @@ a:hover { color: #5eead4; }
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
   letter-spacing: 0.12em;
-  color: var(--accent);
+  color: var(--accent-text);
   padding: 4px 8px;
   border: 1px solid rgba(45,212,191,0.25);
   border-radius: 6px;
@@ -549,7 +556,7 @@ a:hover { color: #5eead4; }
 .step:hover { border-color: var(--line-strong); transform: translateY(-2px); }
 .step-num {
   font-family: 'JetBrains Mono', monospace;
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -663,7 +670,7 @@ a:hover { color: #5eead4; }
 .metric-plus svg { width: 20px; height: 20px; }
 .metric-plus:hover { background: var(--accent); transform: scale(1.06); }
 .metric-photo-card:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-text);
   outline-offset: 4px;
 }
 
@@ -767,7 +774,7 @@ a:hover { color: #5eead4; }
   font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: #fff;
+  color: var(--text);
 }
 .demo-feature-list p {
   margin: 0;
@@ -780,7 +787,7 @@ a:hover { color: #5eead4; }
   font-family: 'JetBrains Mono', monospace;
   font-size: 12.5px;
   letter-spacing: 0.01em;
-  color: var(--accent);
+  color: var(--accent-text);
   background: var(--accent-soft);
   border: 1px solid rgba(45,212,191,0.25);
   padding: 3px 10px;
@@ -860,7 +867,7 @@ a:hover { color: #5eead4; }
   font-size: 22px;
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: var(--accent);
+  color: var(--accent-text);
   font-family: 'JetBrains Mono', monospace;
 }
 .about-stat .lbl { color: var(--text-dim); font-size: 14.5px; }
@@ -906,7 +913,7 @@ a:hover { color: #5eead4; }
 .cta-form input:focus-visible,
 .cta-form select:focus-visible,
 .cta-form textarea:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-text);
   outline-offset: 2px;
 }
 .cta-form textarea { resize: vertical; min-height: 96px; line-height: 1.5; }
@@ -921,7 +928,7 @@ a:hover { color: #5eead4; }
 }
 .cta-form select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%239aa7b2' d='M6 8L0 0h12z'/></svg>"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
 .form-note { font-size: 12.5px; color: var(--text-muted); margin: 4px 0 0; }
-.form-note.success { color: var(--accent); }
+.form-note.success { color: var(--accent-text); }
 .form-note.error { color: var(--danger); }
 
 /* FAQ */
@@ -953,7 +960,7 @@ a:hover { color: #5eead4; }
 .faq-list summary::-webkit-details-marker { display: none; }
 .faq-list summary::after {
   content: "+";
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 22px;
   font-weight: 400;
   transition: transform 0.2s ease;
@@ -1077,7 +1084,7 @@ a:hover { color: #5eead4; }
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--accent);
+  color: var(--accent-text);
   font-family: 'JetBrains Mono', monospace;
 }
 .modal-section p { margin: 0; color: var(--text-dim); font-size: 14.5px; line-height: 1.6; }
@@ -1157,7 +1164,7 @@ body.modal-open { overflow: hidden; }
 
 /* Focus visible */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-text);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -1202,7 +1209,7 @@ body.modal-open { overflow: hidden; }
   background: currentColor;
   flex: none;
 }
-.status-label--available { color: var(--accent); border-color: rgba(45,212,191,0.35); background: var(--accent-soft); }
+.status-label--available { color: var(--accent-text); border-color: rgba(45,212,191,0.35); background: var(--accent-soft); }
 .status-label--beta { color: #fbbf24; border-color: rgba(251,191,36,0.35); background: rgba(251,191,36,0.1); }
 .status-label--research { color: #93c5fd; border-color: rgba(147,197,253,0.35); background: rgba(147,197,253,0.1); }
 .status-label--dev { color: var(--text-muted); border-color: var(--line-strong); background: transparent; }
@@ -1222,7 +1229,7 @@ body.modal-open { overflow: hidden; }
   letter-spacing: -0.03em;
   margin: 0 0 18px;
   font-weight: 800;
-  color: #fff;
+  color: var(--text);
 }
 .page-hero .lede { font-size: 18px; max-width: 620px; }
 @media (max-width: 720px) {
@@ -1256,7 +1263,7 @@ body.modal-open { overflow: hidden; }
 .platform-item-index {
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
-  color: var(--accent);
+  color: var(--accent-text);
 }
 .platform-item h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
 .platform-item--featured h3 { font-size: 28px; }
@@ -1445,4 +1452,36 @@ body.modal-open { overflow: hidden; }
   color: var(--text-muted);
   border-left: 2px solid var(--line-strong);
   padding-left: 10px;
+}
+
+/* Light mode: follows the OS/browser setting only, no manual toggle.
+   Overrides the page-chrome tokens; the accent stays constant across both
+   themes. Immersive, photo- or video-backed modules (hero, sleeve product
+   stage, demo phone bezel, audience-panel photography) keep their own
+   always-dark treatment intentionally, the same way product staging stays
+   dark on light-themed sites like Apple's or WHOOP's — they're not page
+   background, so they're untouched here. Placed last so it wins cascade
+   ties against the equal-specificity rules above it. */
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light dark;
+    --bg: #f6f7f8;
+    --bg-elev: #ffffff;
+    --bg-elev-2: #eef1f3;
+    --surface: #ffffff;
+    --line: rgba(15, 23, 31, 0.10);
+    --line-strong: rgba(15, 23, 31, 0.18);
+    --text: #10151a;
+    --text-dim: #454e57;
+    --text-muted: #5b6570;
+    --shadow: 0 30px 80px -30px rgba(15, 23, 31, 0.20);
+    --accent-text: #0f766e;
+  }
+  a:hover { color: var(--accent-2); }
+  .site-header { background: rgba(246, 247, 248, 0.7); }
+  .site-header.scrolled { background: rgba(246, 247, 248, 0.92); }
+  .site-footer { background: var(--bg-elev-2); }
+  .brand-logo { filter: invert(1); }
+  .status-label--beta { color: #92650a; border-color: rgba(146,101,10,0.35); background: rgba(146,101,10,0.1); }
+  .status-label--research { color: #1d4ed8; border-color: rgba(29,78,216,0.35); background: rgba(29,78,216,0.1); }
 }
