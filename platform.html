@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Platform. How Kineura fits together</title>
+  <meta name="description" content="How Kineura's wearable sensing, workout timeline, and movement-analysis tools work together as one system: Measure, Record, Analyze, Act." />
+  <meta name="theme-color" content="#0a0f12" />
+  <link rel="canonical" href="https://kineura.com/platform.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Platform. How Kineura fits together" />
+  <meta property="og:description" content="How Kineura's wearable sensing, workout timeline, and movement-analysis tools work together as one system." />
+  <meta property="og:image" content="og-image.svg" />
+  <meta property="og:url" content="https://kineura.com/platform.html" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Kineura home">
+        <img class="brand-logo" src="assets/img/kineura-wordmark-cropped.png" alt="Kineura" width="487" height="120" />
+      </a>
+      <nav class="primary-nav" aria-label="Primary">
+        <button class="nav-toggle" aria-controls="navList" aria-expanded="false" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-list" id="navList">
+          <li><a href="platform.html" aria-current="page">Platform</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html#early-access" class="nav-cta">Get Early Access</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <h1>A connected system, built in four parts.</h1>
+        <p class="lede">Kineura is not one sensor. It's a system that measures muscle and motion, records it into a training timeline, analyzes it into metrics, and gets it in front of the people who act on it: the athlete, the coach, the clinician.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 64px;">
+      <div class="container">
+        <div class="tool-row" id="measure">
+          <div class="tool-copy">
+            <div class="tool-copy-head">
+              <h2 style="margin:0;">Measure</h2>
+              <span class="status-label status-label--available">Available now</span>
+            </div>
+            <p class="lede">Wearable IMU sensing, and hybrid EMG + IMU sensing for muscle activation alongside motion. This is the part of the system with real, shipping hardware today.</p>
+            <ul class="tool-meta">
+              <li><strong>Hardware:</strong> a lower-leg compression sleeve, IMU-only or EMG + IMU</li>
+              <li><strong>Output:</strong> synchronized muscle-activation and motion signal, hundreds of samples per second</li>
+            </ul>
+            <a class="btn btn-secondary" href="tools.html#wearable-sensing">See the hardware tiers</a>
+          </div>
+          <div class="tool-figure">
+            <img src="assets/img/kineura-sleeve.jpg" alt="Kineura lower-leg biosensor sleeve" loading="lazy" />
+            <p class="tool-figure-caption">The current EMG + IMU sleeve.</p>
+          </div>
+        </div>
+
+        <div class="tool-row tool-row--reverse" id="record">
+          <div class="tool-copy">
+            <div class="tool-copy-head">
+              <h2 style="margin:0;">Record</h2>
+              <span class="status-label status-label--dev">In development</span>
+            </div>
+            <p class="lede">A synchronized timeline that brings together wearable data, planned workouts, manual notes, and connected training context such as Strava, into one coherent record instead of scattered exports.</p>
+            <ul class="tool-meta">
+              <li><strong>Job to be done:</strong> stop re-entering the same workout across three apps</li>
+              <li><strong>Status:</strong> architecture defined, not yet shipping to early-access members</li>
+            </ul>
+            <a class="btn btn-secondary" href="tools.html#workout-timeline">Read about the timeline</a>
+          </div>
+          <div class="tool-figure">
+            <img src="assets/img/metric-cadence.jpg" alt="Runner on an open trail in motion" loading="lazy" />
+            <p class="tool-figure-caption">Concept imagery. The timeline product is not yet built.</p>
+          </div>
+        </div>
+
+        <div class="tool-row" id="analyze">
+          <div class="tool-copy">
+            <div class="tool-copy-head">
+              <h2 style="margin:0;">Analyze</h2>
+              <span class="status-label status-label--dev">In development</span>
+            </div>
+            <p class="lede">Activity recognition, walk-run interval data collection, and video-based movement tracking for jump and sprint mechanics, turning raw signal and footage into metrics worth acting on.</p>
+            <ul class="tool-meta">
+              <li><strong>Job to be done:</strong> answer "what actually changed in my mechanics," not just "what did I do"</li>
+              <li><strong>Status:</strong> early prototyping, not yet available for pilots</li>
+            </ul>
+            <a class="btn btn-secondary" href="tools.html#video-motion-analysis">Read about video analysis</a>
+          </div>
+          <div class="tool-figure">
+            <img src="assets/img/athlete-sprint.jpg" alt="Runner sprinting on a track" loading="lazy" />
+            <p class="tool-figure-caption">Concept imagery. Video motion analysis is not yet built.</p>
+          </div>
+        </div>
+
+        <div class="tool-row tool-row--reverse" id="act">
+          <div class="tool-copy">
+            <div class="tool-copy-head">
+              <h2 style="margin:0;">Act</h2>
+              <span class="status-label status-label--dev">In development</span>
+            </div>
+            <p class="lede">Review workflows built for how athletes, coaches, and clinical collaborators actually use movement data. A coach and a clinician need different views of the same session, not one dashboard trying to serve everyone the same way.</p>
+            <ul class="tool-meta">
+              <li><strong>For coaches:</strong> roster-level review, not one athlete at a time</li>
+              <li><strong>For clinicians:</strong> return-to-run progress tracking over a timeline</li>
+            </ul>
+            <a class="btn btn-secondary" href="contact.html">Talk to us about your workflow</a>
+          </div>
+          <div class="tool-figure">
+            <img src="assets/img/athlete-coach.jpg" alt="Coach reviewing data with athlete" loading="lazy" />
+            <p class="tool-figure-caption">Concept imagery. Coach and clinician review tools are not yet built.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section science">
+      <div class="container">
+        <div class="science-card">
+          <h2>What's real today, what's ahead.</h2>
+          <p>Measure is real, shipping hardware. Record, Analyze, and Act are the direction we're building toward, shown here with honest status labels, not implied as available.</p>
+          <p class="muted">This is not a medical device and does not diagnose or treat any condition.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="index.html" aria-label="Kineura home">
+          <img class="brand-logo" src="assets/img/kineura-wordmark-cropped.png" alt="Kineura" width="487" height="120" />
+        </a>
+        <p class="footer-tag">Insights at every stride.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <div>
+          <p class="footer-nav-heading">Platform</p>
+          <ul>
+            <li><a href="platform.html">How it works</a></li>
+            <li><a href="tools.html">Tools</a></li>
+            <li><a href="index.html#hardware">Hardware tiers</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-nav-heading">Collaborate</p>
+          <ul>
+            <li><a href="for-teams-coaches.html">For coaches &amp; teams</a></li>
+            <li><a href="for-research-clinical.html">For research &amp; clinical</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-nav-heading">Company</p>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#science">Science</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; <span id="year"></span> Kineura. All rights reserved.</p>
+      <p class="footer-disclaimer">Kineura supports training insight, not medical diagnosis or treatment.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

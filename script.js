@@ -69,15 +69,22 @@
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // ---- Sticky header on scroll ----
+  // ---- Sticky header state ----
+  // A 1px sentinel at the top of the page, observed via IntersectionObserver,
+  // replaces a raw `scroll` listener so header state doesn't cost a per-frame
+  // handler.
   var header = document.getElementById('siteHeader');
-  function onScroll() {
-    if (!header) return;
-    if (window.scrollY > 8) header.classList.add('scrolled');
-    else header.classList.remove('scrolled');
+  if (header) {
+    var sentinel = document.createElement('div');
+    sentinel.setAttribute('aria-hidden', 'true');
+    sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none;';
+    document.body.insertBefore(sentinel, document.body.firstChild);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        header.classList.toggle('scrolled', !entries[0].isIntersecting);
+      }).observe(sentinel);
+    }
   }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 
   // ---- Mobile nav toggle ----
   var toggle = document.querySelector('.nav-toggle');
@@ -117,7 +124,6 @@
 
   // ---- Page-level metric modal ----
   var modal = document.getElementById('metricModal');
-  var modalTag = document.getElementById('metricModalTag');
   var modalTitle = document.getElementById('metricModalTitle');
   var modalTagline = document.getElementById('metricModalTagline');
   var modalWhat = document.getElementById('metricModalWhat');
@@ -130,7 +136,6 @@
     var m = METRICS[key];
     if (!m || !modal) return;
     lastFocus = document.activeElement;
-    modalTag.textContent = 'Metric';
     modalTitle.textContent = m.title;
     modalTagline.textContent = m.tagline;
     modalWhat.textContent = m.what;
@@ -170,20 +175,22 @@
   });
 
 
-  // ---- Early-access form ----
-  // Progressive enhancement over the native FormSubmit.co POST. With JS, we
-  // submit via fetch to the AJAX endpoint and surface the result inline so
-  // the user stays on the page. Without JS, the form's native `action` still
-  // posts to FormSubmit and the user is redirected to the `_next` URL.
-  var form = document.getElementById('earlyAccessForm');
-  var note = document.getElementById('formNote');
-  if (form && window.fetch && window.FormData) {
+  // ---- Lead-capture forms (early access, coach, research/clinical) ----
+  // Progressive enhancement over the native FormSubmit.co POST. With JS, each
+  // form submits via fetch to the AJAX endpoint and surfaces the result
+  // inline so the user stays on the page. Without JS, the form's native
+  // `action` still posts to FormSubmit and the user is redirected to the
+  // `_next` URL. Every `.js-lead-form` on any page is wired the same way.
+  document.querySelectorAll('.js-lead-form').forEach(function (form) {
+    var note = form.querySelector('.form-note');
+    var submitLabel = (form.querySelector('button[type="submit"]') || {}).textContent || 'Submit';
+    if (!(window.fetch && window.FormData)) return;
+
     form.addEventListener('submit', function (e) {
       var emailField = form.elements.namedItem('email');
       var email = (emailField && emailField.value) || '';
       var honey = (form.elements.namedItem('_honey') || {}).value || '';
 
-      // Honeypot: silently drop bot submissions on the client too.
       if (honey) { e.preventDefault(); return; }
 
       if (!email || email.indexOf('@') < 1) {
@@ -198,14 +205,13 @@
 
       e.preventDefault();
       var submitBtn = form.querySelector('button[type="submit"]');
-      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
       if (note) {
-        note.textContent = 'Sending your request…';
+        note.textContent = 'Sending your request...';
         note.classList.remove('success', 'error');
       }
 
       var data = new FormData(form);
-      // FormSubmit's AJAX endpoint accepts JSON and returns JSON.
       var json = {};
       data.forEach(function (v, k) { json[k] = v; });
       var actionUrl = form.getAttribute('action') || '';
@@ -222,7 +228,7 @@
         if (ok) {
           form.reset();
           if (note) {
-            note.textContent = 'Thanks! We received your request and will be in touch.';
+            note.textContent = 'Thanks. We received your request and will be in touch.';
             note.classList.remove('error');
             note.classList.add('success');
           }
@@ -240,18 +246,20 @@
           note.classList.add('error');
         }
       }).then(function () {
-        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request Early Access'; }
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = submitLabel; }
       });
     });
-  }
 
-  // If FormSubmit's `_next` redirect bounced us back with ?ea=thanks (used in
-  // the no-JS path), surface a friendly confirmation near the form.
-  if (note && /[?&]ea=thanks\b/.test(window.location.search)) {
-    note.textContent = 'Thanks! We received your request and will be in touch.';
-    note.classList.remove('error');
-    note.classList.add('success');
-  }
+    // If FormSubmit's `_next` redirect bounced this page back with a thanks
+    // marker matching this form's id (used in the no-JS path), surface a
+    // friendly confirmation near that specific form.
+    var marker = form.getAttribute('data-thanks-param');
+    if (note && marker && new RegExp('[?&]' + marker + '=1\\b').test(window.location.search)) {
+      note.textContent = 'Thanks. We received your request and will be in touch.';
+      note.classList.remove('error');
+      note.classList.add('success');
+    }
+  });
 
   // ---- Sleeve explainer connector lines ----
   // Draw SVG lines from each callout card's image-side edge to the corresponding
