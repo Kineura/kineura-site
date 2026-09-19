@@ -162,16 +162,15 @@
     });
   }
 
-  // Bind photo cards & their plus buttons
+  // Bind photo cards & their plus buttons. The card itself stays a plain
+  // role="listitem" (required by the parent role="list") and only forwards
+  // clicks; the native .metric-plus button is the sole keyboard/AT-focusable
+  // control, so a card never nests two interactive elements.
   document.querySelectorAll('.metric-photo-card').forEach(function (card) {
     var key = card.getAttribute('data-metric');
-    card.setAttribute('tabindex', '0');
-    card.setAttribute('role', 'button');
-    card.setAttribute('aria-haspopup', 'dialog');
+    var plusButton = card.querySelector('.metric-plus');
+    if (plusButton) plusButton.setAttribute('aria-haspopup', 'dialog');
     card.addEventListener('click', function () { openMetricModal(key); });
-    card.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openMetricModal(key); }
-    });
   });
 
 
