@@ -1,0 +1,164 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Kineura early-access lead capture - Function URL, DynamoDB, SES
+
+Parameters:
+  NotifyEmail:
+    Type: String
+    Description: Address that receives submission notifications
+  SenderAddress:
+    Type: String
+    Default: noreply@kineura.com
+  AllowedOrigin:
+    Type: String
+    Default: https://kineura.com
+  IpSalt:
+    Type: String
+    NoEcho: true
+    Description: Salt for hashing client IPs
+  RateLimit:
+    Type: Number
+    Default: 5
+
+Resources:
+  LeadsTable:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      TableName: kineura-leads
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: email
+          AttributeType: S
+        - AttributeName: submittedAt
+          AttributeType: S
+      KeySchema:
+        - AttributeName: email
+          KeyType: HASH
+        - AttributeName: submittedAt
+          KeyType: RANGE
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+
+  ThrottleTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: kineura-lead-throttle
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: throttleKey
+          AttributeType: S
+      KeySchema:
+        - AttributeName: throttleKey
+          KeyType: HASH
+      TimeToLiveSpecification:
+        AttributeName: expiresAt
+        Enabled: true
+
+  SenderIdentity:
+    Type: AWS::SES::EmailIdentity
+    Properties:
+      EmailIdentity: kineura.com
+      DkimAttributes:
+        SigningEnabled: true
+
+  FunctionLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/lambda/kineura-lead-capture
+      RetentionInDays: 90
+
+  FunctionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: lead-capture
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              # Deliberately no Scan: Query covers the repeat-submitter lookup,
+              # and exports run under a developer's own credentials.
+              - Effect: Allow
+                Action:
+                  - dynamodb:PutItem
+                  - dynamodb:Query
+                Resource: !GetAtt LeadsTable.Arn
+              - Effect: Allow
+                Action: dynamodb:UpdateItem
+                Resource: !GetAtt ThrottleTable.Arn
+              - Effect: Allow
+                Action: ses:SendEmail
+                Resource: '*'
+
+  LeadFunction:
+    Type: AWS::Lambda::Function
+    DependsOn: FunctionLogGroup
+    Properties:
+      FunctionName: kineura-lead-capture
+      Runtime: nodejs22.x
+      Handler: index.handler
+      Role: !GetAtt FunctionRole.Arn
+      Timeout: 10
+      MemorySize: 256
+      Environment:
+        Variables:
+          LEADS_TABLE: !Ref LeadsTable
+          THROTTLE_TABLE: !Ref ThrottleTable
+          NOTIFY_EMAIL: !Ref NotifyEmail
+          SENDER_ADDRESS: !Ref SenderAddress
+          IP_SALT: !Ref IpSalt
+          RATE_LIMIT: !Ref RateLimit
+      Code:
+        # Placeholder only. scripts/deploy.sh immediately replaces this with the
+        # real ESM bundle via update-function-code; CloudFormation inline code is
+        # CommonJS and capped at 4096 characters.
+        ZipFile: |
+          exports.handler = async () => ({ statusCode: 503, body: 'awaiting code deploy' });
+
+  LeadFunctionUrl:
+    Type: AWS::Lambda::Url
+    Properties:
+      TargetFunctionArn: !GetAtt LeadFunction.Arn
+      AuthType: NONE
+      Cors:
+        AllowOrigins:
+          - !Ref AllowedOrigin
+        AllowMethods:
+          - POST
+        AllowHeaders:
+          - content-type
+        MaxAge: 86400
+
+  LeadFunctionUrlPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref LeadFunction
+      Action: lambda:InvokeFunctionUrl
+      Principal: '*'
+      FunctionUrlAuthType: NONE
+
+Outputs:
+  FunctionUrl:
+    Description: Endpoint the three site forms post to
+    Value: !GetAtt LeadFunctionUrl.FunctionUrl
+  DkimName1:
+    Value: !GetAtt SenderIdentity.DkimDNSTokenName1
+  DkimValue1:
+    Value: !GetAtt SenderIdentity.DkimDNSTokenValue1
+  DkimName2:
+    Value: !GetAtt SenderIdentity.DkimDNSTokenName2
+  DkimValue2:
+    Value: !GetAtt SenderIdentity.DkimDNSTokenValue2
+  DkimName3:
+    Value: !GetAtt SenderIdentity.DkimDNSTokenName3
+  DkimValue3:
+    Value: !GetAtt SenderIdentity.DkimDNSTokenValue3
