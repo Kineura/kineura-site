@@ -3,7 +3,7 @@
 Receives submissions from the three kineura-site lead forms, stores them in
 DynamoDB, and emails a notification. Replaces FormSubmit.co.
 
-Design: [`../docs/lead-capture/design.md`](../docs/lead-capture/design.md)
+Design notes are kept internally and are not published in this repo.
 
 ## What is deployed
 

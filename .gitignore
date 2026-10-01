@@ -4,3 +4,8 @@ node_modules/
 .vscode/
 .idea/
 *.log
+
+# Internal-only: company-sensitive strategy and design docs, never published
+# (repo is public; these are kept on the local-full-history branch and on disk)
+PRODUCT.md
+docs/
