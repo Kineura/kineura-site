@@ -29,7 +29,7 @@ npx serve .
 
 Then visit http://localhost:8080/.
 
-The interactive demo is now implemented natively in the page (no iframe). It mirrors the dashboard, EMG, and trends views from the original `kineura_mockup`, with tap-through metric detail (What is it / How is it measured / Why it matters / Research validation).
+The interactive demo embeds the Kineura app mockup (`kineura_mockup`, hosted on GitHub Pages) in an iframe, cropped to the phone screen. The metric cards on the page open a native modal with tap-through detail (What is it / How is it measured / Why it matters / Research validation).
 
 ## Assets
 

@@ -213,6 +213,14 @@ a:hover { color: #5eead4; }
   border-color: var(--accent);
   color: var(--accent-text);
 }
+/* The hero sits on dark video in both themes, so its secondary button keeps
+   light text on a dark translucent fill regardless of color scheme. */
+.hero .btn-secondary {
+  background: rgba(7,9,11,0.4);
+  color: #ffffff;
+  border-color: rgba(255,255,255,0.24);
+}
+.hero .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
 /* Hero */
 .hero {
@@ -1236,29 +1244,22 @@ body.modal-open { overflow: hidden; }
   .page-hero { padding: 120px 0 48px; }
 }
 
-/* Platform categories: Measure / Record / Analyze / Act — one featured item
-   (the real, shipping capability) plus three smaller, asymmetric rather than
-   four equal cards. */
+/* Platform categories: Measure / Record / Analyze / Act — four equal,
+   numbered cards read left to right as one sequence. Every part is in
+   development, so no card is singled out as "featured". */
 .platform-grid {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  grid-template-rows: auto auto;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
 }
 .platform-item {
   background: var(--bg-elev);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  padding: 32px;
+  padding: 28px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
-.platform-item--featured {
-  grid-row: 1 / 3;
-  padding: 40px;
-  background: linear-gradient(160deg, var(--bg-elev) 0%, var(--bg-elev-2) 100%);
-  border-color: rgba(45,212,191,0.28);
 }
 .platform-item-index {
   font-family: 'JetBrains Mono', monospace;
@@ -1266,12 +1267,13 @@ body.modal-open { overflow: hidden; }
   color: var(--accent-text);
 }
 .platform-item h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
-.platform-item--featured h3 { font-size: 28px; }
 .platform-item p { margin: 0; color: var(--text-dim); font-size: 15px; line-height: 1.6; }
 .platform-item .status-label { margin-top: auto; align-self: flex-start; }
-@media (max-width: 860px) {
+@media (max-width: 1080px) {
+  .platform-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
   .platform-grid { grid-template-columns: 1fr; }
-  .platform-item--featured { grid-row: auto; }
 }
 
 /* Hardware-tier comparison: two grouped-cluster cards, coequal, never a
@@ -1407,7 +1409,8 @@ body.modal-open { overflow: hidden; }
   border: 1px solid var(--line);
   background: var(--bg-elev);
 }
-.tool-figure img { width: 100%; display: block; }
+.tool-figure img { width: 100%; display: block; aspect-ratio: 4 / 3; object-fit: cover; }
+.tool-figure img[src$="kineura-sleeve.jpg"] { aspect-ratio: auto; }
 .tool-figure-caption {
   padding: 12px 16px;
   font-size: 12.5px;
@@ -1540,6 +1543,7 @@ body.modal-open { overflow: hidden; }
   .site-header.scrolled { background: rgba(246, 247, 248, 0.92); }
   .site-footer { background: var(--bg-elev-2); }
   .brand-logo { filter: invert(1); }
+  .btn-secondary { background: var(--bg-elev); }
   .status-label--beta { color: #92650a; border-color: rgba(146,101,10,0.35); background: rgba(146,101,10,0.1); }
   .status-label--research { color: #1d4ed8; border-color: rgba(29,78,216,0.35); background: rgba(29,78,216,0.1); }
 }
