@@ -1454,6 +1454,64 @@ body.modal-open { overflow: hidden; }
   padding-left: 10px;
 }
 
+/* Long-form reading pages (privacy.html, why.html): one readable column of
+   prose under the shared .page-hero, built only from the existing tokens. */
+.prose-section { padding-top: 56px; }
+.prose {
+  max-width: 760px;
+  margin: 0 auto;
+  color: var(--text-dim);
+  font-size: 16.5px;
+}
+.prose h2 {
+  font-size: clamp(22px, 2.6vw, 28px);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin: 56px 0 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+.prose h3 {
+  font-size: 17px;
+  margin: 28px 0 8px;
+  font-weight: 650;
+  color: var(--text);
+}
+.prose h4 {
+  font-size: 15px;
+  margin: 20px 0 6px;
+  font-weight: 600;
+  color: var(--text);
+}
+.prose p, .prose ul { margin: 0 0 14px; }
+.prose ul { padding-left: 22px; }
+.prose li { margin-bottom: 8px; }
+.prose li::marker { color: var(--accent-text); }
+.prose strong { color: var(--text); font-weight: 600; }
+.prose a { text-decoration: underline; text-underline-offset: 3px; }
+.prose-meta {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0 0 8px;
+}
+.in-short {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin: 8px 0 8px;
+}
+.prose .in-short h2 { margin-top: 0; }
+.in-short ul { margin-bottom: 0; }
+.in-short li { color: var(--text); }
+@media (max-width: 720px) {
+  .in-short { padding: 20px 18px; }
+  .prose h2 { margin-top: 44px; }
+  .prose .prose .in-short h2 { margin-top: 0; }
+}
+
 /* Light mode: follows the OS/browser setting only, no manual toggle.
    Overrides the page-chrome tokens; the accent stays constant across both
    themes. Immersive, photo- or video-backed modules (hero, sleeve product
@@ -1485,3 +1543,5 @@ body.modal-open { overflow: hidden; }
   .status-label--beta { color: #92650a; border-color: rgba(146,101,10,0.35); background: rgba(146,101,10,0.1); }
   .status-label--research { color: #1d4ed8; border-color: rgba(29,78,216,0.35); background: rgba(29,78,216,0.1); }
 }
+.prose .fine-print { font-size: 13px; color: var(--text-muted); }
+.prose .fine-print strong { color: var(--text-muted); }
